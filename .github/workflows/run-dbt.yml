@@ -1,11 +1,15 @@
 name: Run a deploy action with DBT to the Snowflake environment
 
-# run pipeline when there is a push to main branch
+# run pipeline when there is a push to main branch or manual
+# do not automatically run on changes for workflow 
 on:
   workflow_dispatch:
+
   #push:
   #  branches:
   #    - main
+  #  paths-ignore:
+  #    - '.github/**'
 
 jobs:
   install-and-run-dbt:
