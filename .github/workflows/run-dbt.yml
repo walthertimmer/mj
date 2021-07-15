@@ -39,8 +39,9 @@ jobs:
     
     - script: |
         pip install dbt --user
+        dbt --version
         export PATH=$PATH:/home/vsts_azpcontainer/.local/bin
-        cd snowflake_tpc_demo
+        cd dbt
         dbt compile
         dbt test
         dbt run
