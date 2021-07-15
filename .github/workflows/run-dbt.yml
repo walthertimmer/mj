@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     
     container: 
-      image: python:3.7
+      image: python:3.9
       options: -u root
 
     steps:
@@ -26,6 +26,17 @@ jobs:
       with:
         repository: ${{ github.repository }} 
         
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    
+    - name: Pip Install dbt
+      uses: BSFishy/pip-action@v1
+      with:
+        # The packages to install from Pip
+        packages: dbt
+    
     - name: dbt
       run: |
         echo hello world
