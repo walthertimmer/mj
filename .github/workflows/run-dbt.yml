@@ -22,9 +22,15 @@ jobs:
 
     steps:
     - name: checkout 
-      uses: actions/checkout@latest
+      uses: actions/checkout@v2
       with:
         repository: ${{ github.repository }} 
+        
+    - name: dbt
+      run: |
+        echo hello world
+        mkdir ~/.dbt
+        ls ~
         
         
     
