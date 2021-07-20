@@ -11,6 +11,12 @@ on:
       - release-prd
     paths-ignore:
       - '.github/**'
+  
+  pull_request:
+    branches:
+      - release-prd
+    paths-ignore:
+      - '.github/**'    
 
 jobs:
   install-and-run-dbt:
