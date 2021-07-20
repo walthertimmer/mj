@@ -1,4 +1,4 @@
-name: DBT_PIPELINE_RUN_DEV
+name: DBT_PIPELINE_RUN_ACC
 #Run a deploy action with DBT to the Snowflake environment
 
 # run pipeline when there is a push to main branch or manual
