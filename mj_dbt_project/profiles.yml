@@ -15,8 +15,8 @@ mj_dbt_project:
       account: hc64646.europe-west4.gcp
 
       # User/password auth
-      user: DBT_USER
-      password: DBTUSER123!!!
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}" #DBT_USER
+      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}" #DBTUSER123!!!
 
       role: SYSADMIN
       database: MJ_DWH_DEV
