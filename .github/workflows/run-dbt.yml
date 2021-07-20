@@ -42,7 +42,9 @@ jobs:
         dbt_project_folder: "mj_dbt_project"
       env:
         DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
-        DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}   
+        DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}
+        DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
+        DBT_SNOWFLAKE_ENVIRONMENT: ${{ secrets.DBT_SNOWFLAKE_ENVIRONMENT }}
         
     - name: Get the result of dbt-debug in the pipeline
       if: ${{ always() }}
@@ -58,6 +60,8 @@ jobs:
       env:
         DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
         DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}   
+        DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
+        DBT_SNOWFLAKE_ENVIRONMENT: ${{ secrets.DBT_SNOWFLAKE_ENVIRONMENT }}
         
     - name: Get the result of dbt-deps in the pipeline
       if: ${{ always() }}
@@ -72,6 +76,8 @@ jobs:
       env:
         DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
         DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}   
+        DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
+        DBT_SNOWFLAKE_ENVIRONMENT: ${{ secrets.DBT_SNOWFLAKE_ENVIRONMENT }}
     
     - name: Get the result of dbt-compile in the pipeline
       if: ${{ always() }}
@@ -86,6 +92,8 @@ jobs:
       env:
         DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
         DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}  
+        DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
+        DBT_SNOWFLAKE_ENVIRONMENT: ${{ secrets.DBT_SNOWFLAKE_ENVIRONMENT }}
     
     - name: Get the result of dbt-run in the pipeline
       if: ${{ always() }}
@@ -100,6 +108,8 @@ jobs:
       env:
         DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
         DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}  
+        DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
+        DBT_SNOWFLAKE_ENVIRONMENT: ${{ secrets.DBT_SNOWFLAKE_ENVIRONMENT }}
   
     - name: Get the result of dbt-test in the pipeline
       if: ${{ always() }}
