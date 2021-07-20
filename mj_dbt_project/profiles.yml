@@ -14,9 +14,9 @@ mj_dbt_project:
       type: snowflake
       account: hc64646.europe-west4.gcp
 
-      # User/password auth
-      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}" #DBT_USER
-      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}" #DBTUSER123!!!
+      # User/password auth, get from environmental variables (github actions encrypted secrets)
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}" 
+      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}" 
 
       role: SYSADMIN
       database: MJ_DWH_DEV
@@ -25,8 +25,56 @@ mj_dbt_project:
       threads: 1
       client_session_keep_alive: False
       query_tag: default_dbt_tag
+
+    tst:
+      type: snowflake
+      account: hc64646.europe-west4.gcp
+
+      # User/password auth, get from environmental variables (github actions encrypted secrets)
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}" 
+      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}" 
+
+      role: SYSADMIN
+      database: MJ_DWH_TST
+      warehouse: COMPUTE_WH
+      schema: dbt
+      threads: 1
+      client_session_keep_alive: False
+      query_tag: default_dbt_tag
+
+    acc:
+      type: snowflake
+      account: hc64646.europe-west4.gcp
+
+      # User/password auth, get from environmental variables (github actions encrypted secrets)
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}" 
+      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}" 
+
+      role: SYSADMIN
+      database: MJ_DWH_ACC
+      warehouse: COMPUTE_WH
+      schema: dbt
+      threads: 1
+      client_session_keep_alive: False
+      query_tag: default_dbt_tag
     
     prd:
+      type: snowflake
+      account: hc64646.europe-west4.gcp
+
+      # User/password auth, get from environmental variables (github actions encrypted secrets)
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}" 
+      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}" 
+
+      role: SYSADMIN
+      database: MJ_DWH_PRD
+      warehouse: COMPUTE_WH
+      schema: dbt
+      threads: 1
+      client_session_keep_alive: False
+      query_tag: default_dbt_tag
+
+    example:
       type: snowflake
       account: [account id]
 
