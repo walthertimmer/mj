@@ -41,7 +41,7 @@ jobs:
       run: |
         echo hello world
         mkdir ~/.dbt
-        ls ~
+        echo (ls ~)
         dbt --version
         
         
