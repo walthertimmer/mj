@@ -8,7 +8,7 @@ config:
   send_anonymous_usage_stats: false
 
 mj_dbt_project:
-  target: dev
+  target: "{{ env_var('DBT_SNOWFLAKE_ENVIRONMENT') }}" # dev,tst,acc,prd
   outputs:
     dev:
       type: snowflake
