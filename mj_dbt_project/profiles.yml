@@ -8,7 +8,7 @@ config:
   send_anonymous_usage_stats: false
 
 mj_dbt_project:
-  target: snowflake
+  target: dev
   outputs:
     dev:
       type: snowflake
