@@ -12,7 +12,7 @@ mj_dbt_project:
   outputs:
     dev:
       type: snowflake
-      account: hc64646.europe-west4.gcp
+      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}" 
 
       # User/password auth, get from environmental variables (github actions encrypted secrets)
       user: "{{ env_var('DBT_SNOWFLAKE_USER') }}" 
@@ -28,7 +28,7 @@ mj_dbt_project:
 
     tst:
       type: snowflake
-      account: hc64646.europe-west4.gcp
+      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}" 
 
       # User/password auth, get from environmental variables (github actions encrypted secrets)
       user: "{{ env_var('DBT_SNOWFLAKE_USER') }}" 
@@ -44,7 +44,7 @@ mj_dbt_project:
 
     acc:
       type: snowflake
-      account: hc64646.europe-west4.gcp
+      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}" 
 
       # User/password auth, get from environmental variables (github actions encrypted secrets)
       user: "{{ env_var('DBT_SNOWFLAKE_USER') }}" 
@@ -60,7 +60,7 @@ mj_dbt_project:
     
     prd:
       type: snowflake
-      account: hc64646.europe-west4.gcp
+      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}" 
 
       # User/password auth, get from environmental variables (github actions encrypted secrets)
       user: "{{ env_var('DBT_SNOWFLAKE_USER') }}" 
