@@ -30,6 +30,8 @@ jobs:
     - name: copy profile
       run: |
         ls $GITHUB_WORKSPACE
+        ls $GITHUB_WORKSPACE/mj_dbt_project/
+        mkdir -p $GITHUB_WORKSPACE/.dbt/
         /bin/cp $GITHUB_WORKSPACE/mj_dbt_project/profiles.yml $GITHUB_WORKSPACE/.dbt/profiles.yml
       shell: bash
       
