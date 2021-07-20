@@ -42,6 +42,7 @@ jobs:
         echo hello world
         mkdir ~/.dbt
         ls ~
+        dbt --version
         
         
     
