@@ -49,6 +49,21 @@ jobs:
       run: echo "${{ steps.dbt-debug.outputs.result }}"
       shell: bash    
      
+     # deps install dependencies like dbt modules
+    - name: dbt-deps
+      uses: mwhitaker/dbt-action@master
+      with:
+        dbt_command: "dbt deps --profiles-dir ."
+        dbt_project_folder: "mj_dbt_project"
+      env:
+        DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
+        DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}   
+        
+    - name: Get the result of dbt-deps in the pipeline
+      if: ${{ always() }}
+      run: echo "${{ steps.dbt-deps.outputs.result }}"
+      shell: bash       
+     
     - name: dbt-compile
       uses: mwhitaker/dbt-action@master
       with:
