@@ -1,2 +1,2 @@
-# my-jewellery
-My Jewellery POC, DBT, Snowflake, Github Actions
+# mj
+MJ POC, DBT, Snowflake, Github Actions
