@@ -6,7 +6,7 @@ name: mj_dbt
 config-version: 2
 version: 1.0.0
 
-#profile: mj_dbt_project
+profile: mj_dbt_project
 
 source-paths: ["models"]
 docs-paths: ["docs"]
