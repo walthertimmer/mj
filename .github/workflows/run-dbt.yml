@@ -29,15 +29,14 @@ jobs:
      
     - name: copy profile
       run: |
-        ls ~
         ls $GITHUB_WORKSPACE
-        /bin/cp $GITHUB_WORKSPACE/mj_dbt_project/profiles.yml ~/.dbt/profiles.yml
+        /bin/cp $GITHUB_WORKSPACE/mj_dbt_project/profiles.yml $GITHUB_WORKSPACE/.dbt/profiles.yml
       shell: bash
       
     - name: dbt-debug
       uses: mwhitaker/dbt-action@master
       with:
-        dbt_command: "dbt debug"
+        dbt_command: "dbt debug --profiles-dir ."
         dbt_project_folder: "mj_dbt_project"
       env:
         DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
