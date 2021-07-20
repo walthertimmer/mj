@@ -1,4 +1,5 @@
-name: Run a deploy action with DBT to the Snowflake environment
+name: DBT_PIPELINE_RUN
+#Run a deploy action with DBT to the Snowflake environment
 
 # run pipeline when there is a push to main branch or manual
 # do not automatically run on changes for workflow 
