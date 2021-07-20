@@ -20,10 +20,8 @@ modules-path: ["dbt_modules"]
 macro-paths: ["macros"]
 data-paths: ["data"]
 snapshot-paths: ["snapshots"]
-clean-targets: 
-    - ["target"]
-    - ["dbt_modules"]
-    - ["logs"]
+# what files to remove with dbt clean
+clean-targets: [target, dbt_modules, logs]
 
 
 
