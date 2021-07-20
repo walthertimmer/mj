@@ -8,21 +8,21 @@ version: 1.0.0
 
 profile: mj_dbt_project
 
-source-paths: "models"
-docs-paths: "docs"
-analysis-paths: "analysis"
-test-paths: "tests"
-asset-paths: "assets"
-target-path: "target" # directory which will store compiled SQL files
-log-path: "logs"
-modules-path: "dbt_modules"
-macro-paths: "macros"
-data-paths: "data"
-snapshot-paths: "snapshots"
+source-paths: ["models"]
+docs-paths: ["docs"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+asset-paths: ["assets"]
+target-path: ["target"] # directory which will store compiled SQL files
+log-path: ["logs"]
+modules-path: ["dbt_modules"]
+macro-paths: ["macros"]
+data-paths: ["data"]
+snapshot-paths: ["snapshots"]
 clean-targets: 
-    - "target"
-    - "dbt_modules"
-    - "logs"
+    - ["target"]
+    - ["dbt_modules"]
+    - ["logs"]
 
 
 
