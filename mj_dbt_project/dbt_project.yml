@@ -8,18 +8,18 @@ version: 1.0.0
 
 profile: mj_dbt_project
 
-source-paths: [models]
-docs-paths: [docs]
-analysis-paths: [analysis]
-test-paths: [tests]
-asset-paths: [assets]
+source-paths: ["models"]
+docs-paths: ["docs"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+asset-paths: ["assets"]
 # directory which will store compiled SQL files: (optional, lets use local?)
 #target-path: ["target"] 
-log-path: [logs]
-modules-path: [dbt_modules]
-macro-paths: [macros]
-data-paths: [data]
-snapshot-paths: [snapshots]
+log-path: logs
+modules-path: dbt_modules
+macro-paths: ["macros"]
+data-paths: ["data"]
+snapshot-paths: ["snapshots"]
 # what files to remove with dbt clean
 clean-targets: [target, dbt_modules, logs]
 
