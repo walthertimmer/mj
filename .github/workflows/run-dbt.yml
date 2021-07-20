@@ -25,6 +25,11 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: ${{ github.repository }} 
+        # path:
+     
+    - name: copy profile
+      run: /bin/cp /github/home/mj_dbt_project/profiles.yml /github/home/.dbt/profiles.yml
+      shell: bash
       
     - name: dbt-debug
       uses: mwhitaker/dbt-action@master
