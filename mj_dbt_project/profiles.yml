@@ -18,8 +18,8 @@ mj_dbt_project:
       user: DBT_USER
       password: DBTUSER123!!!
 
-      role: ["SYSADMIN"]
-      database: [MJ_DWH_DEV]
+      role: SYSADMIN
+      database: MJ_DWH_DEV
       warehouse: COMPUTE_WH
       schema: dbt
       threads: 1
