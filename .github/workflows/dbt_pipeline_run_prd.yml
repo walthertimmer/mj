@@ -1,0 +1,121 @@
+name: DBT_PIPELINE_RUN_DEV
+#Run a deploy action with DBT to the Snowflake environment
+
+# run pipeline when there is a push to main branch or manual
+# do not automatically run on changes for workflow 
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - release-prd
+    paths-ignore:
+      - '.github/**'
+
+jobs:
+  install-and-run-dbt:
+    runs-on: ubuntu-latest
+    environment: 
+      name: prd
+    
+    #container: 
+    #  image: python:3.8
+    #  options: -u root
+
+    steps:
+    - name: checkout 
+      uses: actions/checkout@v2
+      with:
+        repository: ${{ github.repository }} 
+        # path:
+     
+    - name: copy profile
+      run: |
+        ls $GITHUB_WORKSPACE
+        ls $GITHUB_WORKSPACE/mj_dbt_project/
+        mkdir -p $GITHUB_WORKSPACE/.dbt/
+        /bin/cp $GITHUB_WORKSPACE/mj_dbt_project/profiles.yml $GITHUB_WORKSPACE/.dbt/profiles.yml
+      shell: bash
+      
+    - name: dbt-debug
+      uses: mwhitaker/dbt-action@master
+      with:
+        dbt_command: "dbt debug --profiles-dir ."
+        dbt_project_folder: "mj_dbt_project"
+      env:
+        DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
+        DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}
+        DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
+        DBT_SNOWFLAKE_ENVIRONMENT: ${{ secrets.DBT_SNOWFLAKE_ENVIRONMENT }}
+        
+    - name: Get the result of dbt-debug in the pipeline
+      if: ${{ always() }}
+      run: echo "${{ steps.dbt-debug.outputs.result }}"
+      shell: bash    
+     
+     # deps install dependencies like dbt modules
+    - name: dbt-deps
+      uses: mwhitaker/dbt-action@master
+      with:
+        dbt_command: "dbt deps --profiles-dir ."
+        dbt_project_folder: "mj_dbt_project"
+      env:
+        DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
+        DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}   
+        DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
+        DBT_SNOWFLAKE_ENVIRONMENT: ${{ secrets.DBT_SNOWFLAKE_ENVIRONMENT }}
+        
+    - name: Get the result of dbt-deps in the pipeline
+      if: ${{ always() }}
+      run: echo "${{ steps.dbt-deps.outputs.result }}"
+      shell: bash       
+     
+    - name: dbt-compile
+      uses: mwhitaker/dbt-action@master
+      with:
+        dbt_command: "dbt compile --profiles-dir ."
+        dbt_project_folder: "mj_dbt_project"
+      env:
+        DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
+        DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}   
+        DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
+        DBT_SNOWFLAKE_ENVIRONMENT: ${{ secrets.DBT_SNOWFLAKE_ENVIRONMENT }}
+    
+    - name: Get the result of dbt-compile in the pipeline
+      if: ${{ always() }}
+      run: echo "${{ steps.dbt-compile.outputs.result }}"
+      shell: bash    
+    
+    - name: dbt-run
+      uses: mwhitaker/dbt-action@master
+      with:
+        dbt_command: "dbt run --profiles-dir ."
+        dbt_project_folder: "mj_dbt_project"
+      env:
+        DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
+        DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}  
+        DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
+        DBT_SNOWFLAKE_ENVIRONMENT: ${{ secrets.DBT_SNOWFLAKE_ENVIRONMENT }}
+    
+    - name: Get the result of dbt-run in the pipeline
+      if: ${{ always() }}
+      run: echo "${{ steps.dbt-run.outputs.result }}"
+      shell: bash    
+    
+    - name: dbt-test
+      uses: mwhitaker/dbt-action@master
+      with:
+        dbt_command: "dbt test --profiles-dir ."
+        dbt_project_folder: "mj_dbt_project"
+      env:
+        DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
+        DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}  
+        DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
+        DBT_SNOWFLAKE_ENVIRONMENT: ${{ secrets.DBT_SNOWFLAKE_ENVIRONMENT }}
+  
+    - name: Get the result of dbt-test in the pipeline
+      if: ${{ always() }}
+      run: echo "${{ steps.dbt-test.outputs.result }}"
+      shell: bash
+    
+    
