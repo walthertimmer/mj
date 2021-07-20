@@ -1,4 +1,4 @@
-name: DBT_PIPELINE_RUN
+name: DBT_PIPELINE_RUN_DEV
 #Run a deploy action with DBT to the Snowflake environment
 
 # run pipeline when there is a push to main branch or manual
@@ -15,6 +15,8 @@ on:
 jobs:
   install-and-run-dbt:
     runs-on: ubuntu-latest
+    environment: 
+      name: dev
     
     #container: 
     #  image: python:3.8
@@ -117,71 +119,3 @@ jobs:
       shell: bash
     
     
-      
-    #- name: Set up Python 3.8
-    #  uses: actions/setup-python@v2
-    #  with:
-    #    python-version: 3.8
-    
-   # - name: setup ubuntu for dbt
-   #   run: |
-   #        add-apt-repository universe
-   #        apt-get update
-   #        apt-get install git libpq-dev python python3-pip
-   #        apt-get remove python-cffi
-   #        pip install --upgrade cffi
-   #        pip install cryptography~=3.4
-    
-    #- name: setup python environment for dbt
-    #  run: |
-    #       python3 -m venv dbt-env
-    #       source dbt-env/bin/activate 
-    #       pip install dbt
-    #       pip install --upgrade dbt
-    #       dbt --version
-    
-   # - name: Pip Install dbt
-   #   uses: BSFishy/pip-action@v1
-   #   with:
-   #     # The packages to install from Pip
-   #     packages: dbt
-    
-    #- name: dbt check
-   #   run: |
-    #    echo hello world
-    #    mkdir ~/.dbt
-    #    echo (ls ~)
-    #    dbt --version
-        
-        
-    
-    
-    #- uses: actions/stale@v3
-    #  with:
-    #    stale-issue-message: 'This issue has become stale and will be closed automatically within a period of time. Sorry about that.'
-    #    stale-pr-message: 'This pull request has become stale and will be closed automatically within a period of time. Sorry about that.'
-    #    stale-issue-label: 'no-issue-activity'
-    #    stale-pr-label: 'no-pr-activity'
-    #    days-before-stale: 90 
-        
-#    - task: DownloadSecureFile@1
-#      name: SettingProfile
-#      displayName: 'Downloading Profile for Snowflake'
-#      inputs:
-#        secureFile: 'mj-snowflake-dbt-profile.yml'
-
-#    - script: |
-#        echo Installing $(SettingProfile.secureFilePath) to the ~/.dbt...
-#        mkdir ~/.dbt
-#        cp $(SettingProfile.secureFilePath) ~/.dbt/profiles.yml
-#      displayName: Installing Profile for Snowflake
-    
- #   - script: |
- #       pip install dbt --user
- #       dbt --version
- #       export PATH=$PATH:/home/vsts_azpcontainer/.local/bin
- #       cd dbt
- #       dbt compile
- #       dbt test
- #       dbt run
- #     displayName: 'Compile, Test, and Run'    
