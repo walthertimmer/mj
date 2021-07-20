@@ -28,7 +28,7 @@ jobs:
         # path:
      
     - name: copy profile
-      run: /bin/cp ~/mj_dbt_project/profiles.yml /github/home/.dbt/profiles.yml
+      run: /bin/cp $GITHUB_WORKSPACE/mj_dbt_project/profiles.yml /github/home/.dbt/profiles.yml
       shell: bash
       
     - name: dbt-debug
