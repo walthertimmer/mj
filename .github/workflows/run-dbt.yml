@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     
     container: 
-      image: python:3.9
+      image: python:3.8
       options: -u root
 
     steps:
@@ -33,9 +33,9 @@ jobs:
     
     - name: setup ubuntu for dbt
       run: |
-           sudo apt-get install git libpq-dev python-dev python3-pip
-           sudo apt-get remove python-cffi
-           sudo pip install --upgrade cffi
+           apt-get install git libpq-dev python-dev python3-pip
+           apt-get remove python-cffi
+           pip install --upgrade cffi
            pip install cryptography~=3.4
     
     - name: setup python environment for dbt
