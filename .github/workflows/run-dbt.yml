@@ -29,8 +29,8 @@ jobs:
      
     - name: copy profile
       run: |
-        ll ~
-        ll $GITHUB_WORKSPACE
+        ls ~
+        ls $GITHUB_WORKSPACE
         /bin/cp $GITHUB_WORKSPACE/mj_dbt_project/profiles.yml ~/.dbt/profiles.yml
       shell: bash
       
