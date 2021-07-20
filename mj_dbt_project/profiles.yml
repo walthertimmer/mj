@@ -1,8 +1,14 @@
 # For more information on how to configure this file, please see:
 # https://docs.getdbt.com/docs/profile
 
+config:
+  partial_parse: false
+  use_colors: true
+  printer_width: 80
+  send_anonymous_usage_stats: false
+
 mj_dbt_project:
-  target: dev
+  target: snowflake
   outputs:
     dev:
       type: snowflake
@@ -19,7 +25,8 @@ mj_dbt_project:
       threads: [1 or more]
       client_session_keep_alive: False
       query_tag: [anything]
-    dev:
+    
+    prd:
       type: snowflake
       account: [account id]
 
