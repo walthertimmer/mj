@@ -1,0 +1,60 @@
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: mj_dbt
+
+config-version: 2
+version: 1.0.0
+
+profile: mj_dbt_project
+
+source-paths: ["models"]
+docs-paths: ["docs"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+asset-paths: ["assets"]
+target-path: ["target"] # directory which will store compiled SQL files
+log-path: ["logs"]
+modules-path: ["dbt_modules"]
+macro-paths: ["macros"]
+data-paths: ["data"]
+snapshot-paths: ["snapshots"]
+clean-targets: 
+    - "target"
+    - "dbt_modules"
+    - "logs"
+
+
+#query-comment: string
+
+#require-dbt-version: version-range | [version-range]
+
+#quoting:
+#  database: true | false
+#  schema: true | false
+#  identifier: true | false
+
+#models:
+#  <model-configs>
+
+#seeds:
+#  <seed-configs>
+
+#snapshots:
+#  <snapshot-configs>
+
+#sources:
+#  <source-configs>
+  
+# tests:
+#  <test-configs>
+
+# vars:
+#  <variables>
+
+# on-run-start: sql-statement | [sql-statement]
+# on-run-end: sql-statement | [sql-statement]
+
+# dispatch:
+#  - macro_namespace: packagename
+#    search_order: [packagename]
