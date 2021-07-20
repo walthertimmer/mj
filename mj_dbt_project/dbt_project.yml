@@ -25,6 +25,25 @@ clean-targets:
     - "logs"
 
 
+
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+models:
+  mj_dbt:
+    1_stg:
+        +schema: stg
+        +materialized: table
+    2_uni: 
+        +schema: uni
+        +materialized: table
+    3_int:
+        +schema: int
+        +materialized: table
+    4_dm:
+        +schema: dm
+        +materialized: table
+
 #query-comment: string
 
 #require-dbt-version: version-range | [version-range]
