@@ -26,6 +26,34 @@ jobs:
       with:
         repository: ${{ github.repository }} 
       
+    - name: dbt-debug
+      uses: mwhitaker/dbt-action@master
+      with:
+        dbt_command: "dbt debug"
+        dbt_project_folder: "mj_dbt_project"
+      env:
+        DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
+        DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}   
+        
+    - name: Get the result of dbt-debug in the pipeline
+      if: ${{ always() }}
+      run: echo "${{ steps.dbt-debug.outputs.result }}"
+      shell: bash    
+     
+    - name: dbt-compile
+      uses: mwhitaker/dbt-action@master
+      with:
+        dbt_command: "dbt compile --profiles-dir ."
+        dbt_project_folder: "mj_dbt_project"
+      env:
+        DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
+        DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}   
+    
+    - name: Get the result of dbt-compile in the pipeline
+      if: ${{ always() }}
+      run: echo "${{ steps.dbt-compile.outputs.result }}"
+      shell: bash    
+    
     - name: dbt-run
       uses: mwhitaker/dbt-action@master
       with:
@@ -34,11 +62,27 @@ jobs:
       env:
         DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
         DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}  
-        
+    
     - name: Get the result of dbt-run in the pipeline
       if: ${{ always() }}
       run: echo "${{ steps.dbt-run.outputs.result }}"
+      shell: bash    
+    
+    - name: dbt-test
+      uses: mwhitaker/dbt-action@master
+      with:
+        dbt_command: "dbt test --profiles-dir ."
+        dbt_project_folder: "mj_dbt_project"
+      env:
+        DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}  
+        DBT_SNOWFLAKE_PASSWORD: ${{ secrets.DBT_SNOWFLAKE_PASSWORD }}  
+  
+    - name: Get the result of dbt-test in the pipeline
+      if: ${{ always() }}
+      run: echo "${{ steps.dbt-test.outputs.result }}"
       shell: bash
+    
+    
       
     #- name: Set up Python 3.8
     #  uses: actions/setup-python@v2
