@@ -9,8 +9,8 @@ on:
   push:
     branches:
       - release-acc
-  #  paths-ignore:
-  #    - '.github/**'
+    paths-ignore:
+      - '.github/**'
 
 jobs:
   install-and-run-dbt:
