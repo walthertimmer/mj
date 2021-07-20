@@ -13,7 +13,7 @@ docs-paths: ["docs"]
 analysis-paths: ["analysis"]
 test-paths: ["tests"]
 asset-paths: ["assets"]
-target-path: ["target"] # directory which will store compiled SQL files
+target-path: "target" # directory which will store compiled SQL files
 log-path: ["logs"]
 modules-path: ["dbt_modules"]
 macro-paths: ["macros"]
