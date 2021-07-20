@@ -33,7 +33,7 @@ jobs:
     
     - name: setup ubuntu for dbt
       run: |
-           apt-get install git libpq-dev python-dev python3-pip
+           apt-get install git libpq-dev python python3-pip
            apt-get remove python-cffi
            pip install --upgrade cffi
            pip install cryptography~=3.4
