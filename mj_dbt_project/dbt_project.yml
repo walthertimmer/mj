@@ -32,14 +32,11 @@ models:
   mj_dbt:
     1_stg:
         +schema: stg
+        +materialized: view
+    2_da: 
+        +schema: da
         +materialized: table
-    2_uni: 
-        +schema: uni
-        +materialized: table
-    3_int:
-        +schema: int
-        +materialized: table
-    4_dm:
+    3_dm:
         +schema: dm
         +materialized: table
 
