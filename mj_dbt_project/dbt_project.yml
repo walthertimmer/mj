@@ -33,12 +33,18 @@ models:
     1_stg:
         +schema: stg
         +materialized: table
+      mj_poc:
+        +schema: stg
     2_da: 
         +schema: da
         +materialized: table
+      mj_poc:
+        +schema: stg
     3_dm:
         +schema: dm
         +materialized: table
+      mj_poc:
+        +schema: dm
 
 #query-comment: string
 
