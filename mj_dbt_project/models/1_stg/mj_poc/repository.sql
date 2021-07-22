@@ -1,4 +1,4 @@
-with language as (
+with repository as (
  select 
     --*,
     src.$1:number_of_files::bigint as number_of_files
@@ -9,4 +9,4 @@ with language as (
 
 )
 
-select * from language
+select * from repository
