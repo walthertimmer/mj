@@ -1,16 +1,22 @@
 {% snapshot snapshot_orders %}
 
-{{
-    config(
-      --target_database='analytics',
-      target_schema='snapshots',
-      unique_key='o_orderkey',
-      check_cols='all'
-      strategy='check', --timestamp or check
-      --updated_at='updated_at',
-    )
-}}
+    {{
+        config(
+          target_schema='snapshots',
+          unique_key='o_orderkey',
+          check_cols='all',
+          strategy='check', --timestamp or check
+        )
+    }}
 
-select * from {{ref('tpch_sf','orders')}}
+    WITH source AS (
+      select * 
+      from {{ref('orders')}}
+      -- select * from {{ref('tpch_sf','orders')}}
+    )
+  
+SELECT * 
+FROM source 
 
 {% endsnapshot %}
+
