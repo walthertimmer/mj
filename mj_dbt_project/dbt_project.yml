@@ -31,19 +31,25 @@ clean-targets: [target, dbt_modules, logs]
 models:
   mj_dbt:
     1_stg:
-        +schema: stg
-        +materialized: table
+      +schema: stg
+      +materialized: table
       mj_poc:
         +schema: stg
+      sf_poc:
+        +schema: stg 
     2_da: 
-        +schema: da
-        +materialized: table
+      +schema: da
+      +materialized: table
       mj_poc:
+        +schema: stg
+      sf_poc:
         +schema: stg
     3_dm:
-        +schema: dm
-        +materialized: table
+      +schema: dm
+      +materialized: table
       mj_poc:
+        +schema: dm
+      sf_poc:
         +schema: dm
 
 #query-comment: string
