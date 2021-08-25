@@ -1,3 +1,8 @@
+{{ config(
+    materialized="table",
+    description="omzet per gebied"
+) }}
+
 select 
     round(sum(o.o_totalprice)) as sum_totalprice 
     ,r.r_name as region_name
