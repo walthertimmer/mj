@@ -1,5 +1,5 @@
 select 
-        c.customer:C_custkey as c_custkey
+        c.customer:c_custkey as c_custkey
         ,c.customer:c_acctbal as c_acctbal
         ,c.customer:c_nationkey as c_nationkey
         ,c.customer:c_name as c_name
