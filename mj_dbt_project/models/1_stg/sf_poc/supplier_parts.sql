@@ -21,5 +21,6 @@ p_brand AS part_brand,
 p_type AS part_type,
 p_size AS part_size,
 p_container AS part_container,
-p_retailprice AS part_retail_price
+p_retailprice AS part_retail_price,
+'nieuwe waarde' as ExtraKolom
 FROM supplier_parts
