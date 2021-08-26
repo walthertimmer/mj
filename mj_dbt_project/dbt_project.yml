@@ -31,7 +31,7 @@ clean-targets: [target, dbt_modules, logs]
 models:
   mj_dbt:
     1_stg:
-      +enabled: false
+      +enabled: true
       +schema: stg
       +materialized: table
       mj_poc:
@@ -39,7 +39,7 @@ models:
       sf_poc:
         +schema: stg 
     2_da: 
-      +enabled: false
+      +enabled: true
       +schema: da
       +materialized: table
       mj_poc:
@@ -47,7 +47,7 @@ models:
       sf_poc:
         +schema: stg
     3_dm:
-      +enabled: false
+      +enabled: true
       +schema: dm
       +materialized: table
       mj_poc:
